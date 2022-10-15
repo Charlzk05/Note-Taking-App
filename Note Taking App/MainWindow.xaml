@@ -1,0 +1,86 @@
+﻿<Window x:Class="Note_Taking_App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Note_Taking_App"
+        xmlns:ui="http://schemas.modernwpf.com/2019"
+        ui:WindowHelper.UseModernWindowStyle="True"
+        mc:Ignorable="d"
+        Title="Note Taking App" Icon="note.ico" Height="550" Width="900" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded">
+    <ui:SimpleStackPanel Margin="12" Spacing="24">
+        <Grid>
+            <Grid VerticalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Note Taking App" Grid.Row="0" FontSize="22px" Margin="0 0 0 20" Style="{StaticResource HeaderTextBlockStyle}"/>
+
+                <StackPanel Grid.Column="0" Grid.Row="1" Margin="0 0 10 0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="Title: " Grid.Column="0" VerticalAlignment="Center" Margin="0 0 5 0"/>
+                        <TextBox x:Name="titleBox" Grid.Column="1"/>
+
+                    </Grid>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="330"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="Message: " Grid.Row="0" VerticalAlignment="Center" Margin="0 10 0 10"/>
+                        <RichTextBox x:Name="messageBox" Grid.Row="1">
+                            <RichTextBox.Resources>
+                                <Style TargetType="{x:Type Paragraph}">
+                                    <Setter Property="Margin" Value="0"/>
+                                </Style>
+                            </RichTextBox.Resources>
+                        </RichTextBox>
+                    </Grid>
+                    <Grid Margin="0 10 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button x:Name="newButton" Click="newButton_Click" Grid.Column="0" Content="New" HorizontalAlignment="Stretch" Margin="0 0 5 0" Style="{StaticResource AccentButtonStyle}"/>
+                        <Button x:Name="saveButton" Click="saveButton_Click" Grid.Column="1" Content="Save" HorizontalAlignment="Stretch" Margin="0 0 5 0" Style="{StaticResource AccentButtonStyle}"/>
+                        <Button x:Name="readButton" Click="readButton_Click" Grid.Column="2" Content="Read" HorizontalAlignment="Stretch" Margin="0 0 5 0" Style="{StaticResource AccentButtonStyle}"/>
+                        <Button x:Name="deleteButton" Click="deleteButton_Click" Grid.Column="3" Content="Delete" HorizontalAlignment="Stretch" Style="{StaticResource AccentButtonStyle}"/>
+                    </Grid>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Grid.Row="1">
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="416"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="Notes: " FontSize="16" Grid.Row="0" Margin="0 0 0 5" Style="{StaticResource BaseTextBlockStyle}"/>
+                        <ListBox x:Name="notesListBox" Grid.Row="1">
+                            <ListBox.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem x:Name="refreshButton" Header="Refresh List" Click="refreshButton_Click"/>
+                                </ContextMenu>
+                            </ListBox.ContextMenu>
+                        </ListBox>
+                    </Grid>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </ui:SimpleStackPanel>
+</Window>
